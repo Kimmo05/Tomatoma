@@ -1,0 +1,59 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.min.toma'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation(enforcedPlatform("com.oracle.database.jdbc:ojdbc-bom:21.1.0.0"))
+	implementation("com.oracle.database.jdbc:ojdbc8")
+
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	//mybatis 다른 관련 설정들도 가져옴
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	//JSP
+	implementation 'javax.servlet:jstl'
+	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+
+	// Oracle 지갑 관련
+	implementation("com.oracle.database.jdbc:ucp")
+	// https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki
+	implementation 'com.oracle.database.security:oraclepki'
+	// https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core
+	implementation 'com.oracle.database.security:osdt_core'
+	// https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert
+	implementation 'com.oracle.database.security:osdt_cert'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
