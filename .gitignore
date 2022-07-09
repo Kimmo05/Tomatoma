@@ -267,4 +267,7 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+### Gradle Patch ###
+**/build/
+
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij,dbeaver,macos,windows
